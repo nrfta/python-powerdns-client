@@ -1,0 +1,46 @@
+name: Generate Code
+on: 
+  push:
+    branches: 
+    - codegen
+
+jobs:
+  build:
+    name: Generate Code
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: codegen
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '13' 
+          java-package: jdk 
+          architecture: x64 
+      - name: generate code
+        env:
+          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          git clone https://underline-bot:${GIT_TOKEN}@github.com/nrfta/python-powerdns-client $GITHUB_WORKSPACE/master
+
+          wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.14/swagger-codegen-cli-2.4.14.jar \
+            -O swagger-codegen-cli.jar
+          java -jar swagger-codegen-cli.jar generate \
+            -l python --git-user-id nrfta --git-repo-id python-powerdns-client \
+            -c $GITHUB_WORKSPACE/codegen/config.json \
+            -i $GITHUB_WORKSPACE/codegen/powerdns_swagger.json \
+            -o $GITHUB_WORKSPACE/master
+
+          cd $GITHUB_WORKSPACE/master 
+          git config user.email "67791576+underline-bot@users.noreply.github.com"
+          git config user.name "Underline Bot"
+          sed -i 's,git init,,g' git_push.sh
+          sed -i 's,git pull origin master,,g' git_push.sh
+          echo "swagger-codegen-cli.jar" >> .gitignore
+          /bin/sh ./git_push.sh nrfta python-powerdns-client "Code generated release"
+
