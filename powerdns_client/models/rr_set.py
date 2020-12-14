@@ -62,7 +62,7 @@ class RRSet(object):
         self.name = name
         self.type = type
         self.ttl = ttl
-        self.changetype = changetype
+        self.changetype = changetype if changetype is not None else changetype
         self.records = records
         if comments is not None:
             self.comments = comments
