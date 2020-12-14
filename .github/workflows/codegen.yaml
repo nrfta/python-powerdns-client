@@ -35,7 +35,8 @@ jobs:
             -c codegen/config.json \
             -i codegen/powerdns_swagger.json \
             -o master
-
+          ./codegen/customizer.sh $GITHUB_WORKSPACE/master
+          
           cd master 
           git config user.email "67791576+underline-bot@users.noreply.github.com"
           git config user.name "Underline Bot"
