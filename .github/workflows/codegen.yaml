@@ -32,8 +32,8 @@ jobs:
             -O swagger-codegen-cli.jar
           java -jar swagger-codegen-cli.jar generate \
             -l python --git-user-id nrfta --git-repo-id python-powerdns-client \
-            -c $GITHUB_WORKSPACE/codegen/config.json \
-            -i $GITHUB_WORKSPACE/codegen/powerdns_swagger.json \
+            -c $GITHUB_WORKSPACE/config.json \
+            -i $GITHUB_WORKSPACE/powerdns_swagger.json \
             -o $GITHUB_WORKSPACE/master
 
           cd $GITHUB_WORKSPACE/master 
