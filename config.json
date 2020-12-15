@@ -1,6 +1,6 @@
 {
 	"packageName": "powerdns_client",
 	"projectName": "powerdns-client",
-	"packageVersion": "1.0.3",
+	"packageVersion": "1.0.4",
 	"packageUrl": "https://github.com/nrfta/python-powerdns-client"
 }
