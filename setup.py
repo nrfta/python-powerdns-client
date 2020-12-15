@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "powerdns-client"
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 # To install the library, run the following
 #
 # python setup.py install
@@ -35,7 +35,7 @@ setup(
     version=VERSION,
     description="PowerDNS Authoritative HTTP API",
     author_email="",
-    url="",
+    url="https://github.com/nrfta/python-powerdns-client",
     keywords=["Swagger", "PowerDNS Authoritative HTTP API"],
     install_requires=REQUIRES,
     packages=find_packages(),
