@@ -32,6 +32,7 @@ REQUIRES = [
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+
 setup(
     name=NAME,
     version=VERSION,
@@ -42,5 +43,5 @@ setup(
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
-    long_description=long_description
+    long_description=long_description,
 )
