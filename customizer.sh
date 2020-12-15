@@ -12,6 +12,5 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    long_description_content_type="text/markdown",
 EOM
 perl -i -p0e "s/setup\(/'$text'/se" $file 
