@@ -1,14 +1,13 @@
 # powerdns_client.StatsApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_stats**](StatsApi.md#get_stats) | **GET** /servers/{server_id}/statistics | Query statistics.
 
-
 # **get_stats**
-> list[object] get_stats(server_id, statistic=statistic, includerings=includerings)
+> get_stats(server_id, statistic=statistic, includerings=includerings)
 
 Query statistics.
 
@@ -36,8 +35,7 @@ includerings = true # bool | “true” (default) or “false”, whether to inc
 
 try:
     # Query statistics.
-    api_response = api_instance.get_stats(server_id, statistic=statistic, includerings=includerings)
-    pprint(api_response)
+    api_instance.get_stats(server_id, statistic=statistic, includerings=includerings)
 except ApiException as e:
     print("Exception when calling StatsApi->get_stats: %s\n" % e)
 ```
@@ -52,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**list[object]**
+void (empty response body)
 
 ### Authorization
 
@@ -60,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

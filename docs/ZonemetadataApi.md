@@ -1,6 +1,6 @@
 # powerdns_client.ZonemetadataApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,9 +10,8 @@ Method | HTTP request | Description
 [**list_metadata**](ZonemetadataApi.md#list_metadata) | **GET** /servers/{server_id}/zones/{zone_id}/metadata | Get all the Metadata associated with the zone.
 [**modify_metadata**](ZonemetadataApi.md#modify_metadata) | **PUT** /servers/{server_id}/zones/{zone_id}/metadata/{metadata_kind} | Replace the content of a single kind of domain metadata.
 
-
 # **create_metadata**
-> create_metadata(server_id, zone_id, metadata)
+> create_metadata(metadata, server_id, zone_id)
 
 Creates a set of metadata entries
 
@@ -34,13 +33,13 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonemetadataApi(powerdns_client.ApiClient(configuration))
+metadata = powerdns_client.Metadata() # Metadata | Metadata object with list of values to create
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | 
-metadata = powerdns_client.Metadata() # Metadata | Metadata object with list of values to create
 
 try:
     # Creates a set of metadata entries
-    api_instance.create_metadata(server_id, zone_id, metadata)
+    api_instance.create_metadata(metadata, server_id, zone_id)
 except ApiException as e:
     print("Exception when calling ZonemetadataApi->create_metadata: %s\n" % e)
 ```
@@ -49,9 +48,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **metadata** | [**Metadata**](Metadata.md)| Metadata object with list of values to create | 
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**|  | 
- **metadata** | [**Metadata**](Metadata.md)| Metadata object with list of values to create | 
 
 ### Return type
 
@@ -118,7 +117,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -174,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -228,13 +227,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_metadata**
-> Metadata modify_metadata(server_id, zone_id, metadata_kind, metadata)
+> Metadata modify_metadata(metadata, server_id, zone_id, metadata_kind)
 
 Replace the content of a single kind of domain metadata.
 
@@ -256,14 +255,14 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonemetadataApi(powerdns_client.ApiClient(configuration))
+metadata = powerdns_client.Metadata() # Metadata | metadata to add/create
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | 
 metadata_kind = 'metadata_kind_example' # str | The kind of metadata
-metadata = powerdns_client.Metadata() # Metadata | metadata to add/create
 
 try:
     # Replace the content of a single kind of domain metadata.
-    api_response = api_instance.modify_metadata(server_id, zone_id, metadata_kind, metadata)
+    api_response = api_instance.modify_metadata(metadata, server_id, zone_id, metadata_kind)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ZonemetadataApi->modify_metadata: %s\n" % e)
@@ -273,10 +272,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **metadata** | [**Metadata**](Metadata.md)| metadata to add/create | 
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**|  | 
  **metadata_kind** | **str**| The kind of metadata | 
- **metadata** | [**Metadata**](Metadata.md)| metadata to add/create | 
 
 ### Return type
 

@@ -3,7 +3,9 @@ from __future__ import absolute_import
 # flake8: noqa
 
 # import apis into api package
+from powerdns_client.api.autoprimary_api import AutoprimaryApi
 from powerdns_client.api.config_api import ConfigApi
+from powerdns_client.api.default_api import DefaultApi
 from powerdns_client.api.search_api import SearchApi
 from powerdns_client.api.servers_api import ServersApi
 from powerdns_client.api.stats_api import StatsApi
