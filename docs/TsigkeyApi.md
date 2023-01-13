@@ -1,6 +1,6 @@
 # powerdns_client.TsigkeyApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,9 +10,8 @@ Method | HTTP request | Description
 [**list_tsig_keys**](TsigkeyApi.md#list_tsig_keys) | **GET** /servers/{server_id}/tsigkeys | Get all TSIGKeys on the server, except the actual key
 [**put_tsig_key**](TsigkeyApi.md#put_tsig_key) | **PUT** /servers/{server_id}/tsigkeys/{tsigkey_id} | 
 
-
 # **create_tsig_key**
-> TSIGKey create_tsig_key(server_id, tsigkey)
+> TSIGKey create_tsig_key(tsigkey, server_id)
 
 Add a TSIG key
 
@@ -34,12 +33,12 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.TsigkeyApi(powerdns_client.ApiClient(configuration))
-server_id = 'server_id_example' # str | The id of the server
 tsigkey = powerdns_client.TSIGKey() # TSIGKey | The TSIGKey to add
+server_id = 'server_id_example' # str | The id of the server
 
 try:
     # Add a TSIG key
-    api_response = api_instance.create_tsig_key(server_id, tsigkey)
+    api_response = api_instance.create_tsig_key(tsigkey, server_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TsigkeyApi->create_tsig_key: %s\n" % e)
@@ -49,8 +48,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | **str**| The id of the server | 
  **tsigkey** | [**TSIGKey**](TSIGKey.md)| The TSIGKey to add | 
+ **server_id** | **str**| The id of the server | 
 
 ### Return type
 
@@ -115,7 +114,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -169,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -221,13 +220,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_tsig_key**
-> TSIGKey put_tsig_key(server_id, tsigkey_id, tsigkey)
+> TSIGKey put_tsig_key(tsigkey, server_id, tsigkey_id)
 
 
 
@@ -249,12 +248,12 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.TsigkeyApi(powerdns_client.ApiClient(configuration))
+tsigkey = powerdns_client.TSIGKey() # TSIGKey | A (possibly stripped down) TSIGKey object with the new values
 server_id = 'server_id_example' # str | The id of the server to retrieve the key from
 tsigkey_id = 'tsigkey_id_example' # str | The id of the TSIGkey. Should match the \"id\" field in the TSIGKey object
-tsigkey = powerdns_client.TSIGKey() # TSIGKey | A (possibly stripped down) TSIGKey object with the new values
 
 try:
-    api_response = api_instance.put_tsig_key(server_id, tsigkey_id, tsigkey)
+    api_response = api_instance.put_tsig_key(tsigkey, server_id, tsigkey_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TsigkeyApi->put_tsig_key: %s\n" % e)
@@ -264,9 +263,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **tsigkey** | [**TSIGKey**](TSIGKey.md)| A (possibly stripped down) TSIGKey object with the new values | 
  **server_id** | **str**| The id of the server to retrieve the key from | 
  **tsigkey_id** | **str**| The id of the TSIGkey. Should match the \&quot;id\&quot; field in the TSIGKey object | 
- **tsigkey** | [**TSIGKey**](TSIGKey.md)| A (possibly stripped down) TSIGKey object with the new values | 
 
 ### Return type
 

@@ -1,6 +1,6 @@
 # powerdns_client.ZonesApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,12 +12,11 @@ Method | HTTP request | Description
 [**list_zones**](ZonesApi.md#list_zones) | **GET** /servers/{server_id}/zones | List all Zones in a server
 [**notify_zone**](ZonesApi.md#notify_zone) | **PUT** /servers/{server_id}/zones/{zone_id}/notify | Send a DNS NOTIFY to all slaves.
 [**patch_zone**](ZonesApi.md#patch_zone) | **PATCH** /servers/{server_id}/zones/{zone_id} | Creates/modifies/deletes RRsets present in the payload and their comments. Returns 204 No Content on success.
-[**put_zone**](ZonesApi.md#put_zone) | **PUT** /servers/{server_id}/zones/{zone_id} | Modifies basic zone data (metadata).
+[**put_zone**](ZonesApi.md#put_zone) | **PUT** /servers/{server_id}/zones/{zone_id} | Modifies basic zone data.
 [**rectify_zone**](ZonesApi.md#rectify_zone) | **PUT** /servers/{server_id}/zones/{zone_id}/rectify | Rectify the zone data.
 
-
 # **axfr_export_zone**
-> str axfr_export_zone(server_id, zone_id)
+> InlineResponse200 axfr_export_zone(server_id, zone_id)
 
 Returns the zone in AXFR format.
 
@@ -57,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**str**
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -65,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -120,13 +119,13 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_zone**
-> Zone create_zone(server_id, zone_struct, rrsets=rrsets)
+> Zone create_zone(zone_struct, server_id, rrsets=rrsets)
 
 Creates a new domain, returns the Zone on creation.
 
@@ -146,13 +145,13 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonesApi(powerdns_client.ApiClient(configuration))
-server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_struct = powerdns_client.Zone() # Zone | The zone struct to patch with
+server_id = 'server_id_example' # str | The id of the server to retrieve
 rrsets = true # bool | “true” (default) or “false”, whether to include the “rrsets” in the response Zone object. (optional) (default to true)
 
 try:
     # Creates a new domain, returns the Zone on creation.
-    api_response = api_instance.create_zone(server_id, zone_struct, rrsets=rrsets)
+    api_response = api_instance.create_zone(zone_struct, server_id, rrsets=rrsets)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ZonesApi->create_zone: %s\n" % e)
@@ -162,8 +161,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **server_id** | **str**| The id of the server to retrieve | 
  **zone_struct** | [**Zone**](Zone.md)| The zone struct to patch with | 
+ **server_id** | **str**| The id of the server to retrieve | 
  **rrsets** | **bool**| “true” (default) or “false”, whether to include the “rrsets” in the response Zone object. | [optional] [default to true]
 
 ### Return type
@@ -229,13 +228,13 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_zone**
-> Zone list_zone(server_id, zone_id, rrsets=rrsets)
+> Zone list_zone(server_id, zone_id, rrsets=rrsets, rrset_name=rrset_name, rrset_type=rrset_type)
 
 zone managed by a server
 
@@ -258,10 +257,12 @@ api_instance = powerdns_client.ZonesApi(powerdns_client.ApiClient(configuration)
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | The id of the zone to retrieve
 rrsets = true # bool | “true” (default) or “false”, whether to include the “rrsets” in the response Zone object. (optional) (default to true)
+rrset_name = 'rrset_name_example' # str | Limit output to RRsets for this name. (optional)
+rrset_type = 'rrset_type_example' # str | Limit output to the RRset of this type. Can only be used together with rrset_name. (optional)
 
 try:
     # zone managed by a server
-    api_response = api_instance.list_zone(server_id, zone_id, rrsets=rrsets)
+    api_response = api_instance.list_zone(server_id, zone_id, rrsets=rrsets, rrset_name=rrset_name, rrset_type=rrset_type)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ZonesApi->list_zone: %s\n" % e)
@@ -274,6 +275,8 @@ Name | Type | Description  | Notes
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**| The id of the zone to retrieve | 
  **rrsets** | **bool**| “true” (default) or “false”, whether to include the “rrsets” in the response Zone object. | [optional] [default to true]
+ **rrset_name** | **str**| Limit output to RRsets for this name. | [optional] 
+ **rrset_type** | **str**| Limit output to the RRset of this type. Can only be used together with rrset_name. | [optional] 
 
 ### Return type
 
@@ -285,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -328,7 +331,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **server_id** | **str**| The id of the server to retrieve | 
- **zone** | **str**| When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#39;s id or to check if a zone exists.  | [optional] 
+ **zone** | **str**| When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#x27;s id or to check if a zone exists.  | [optional] 
  **dnssec** | **bool**| “true” (default) or “false”, whether to include the “dnssec” and ”edited_serial” fields in the Zone objects. Setting this to ”false” will make the query a lot faster. | [optional] [default to true]
 
 ### Return type
@@ -341,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -396,13 +399,13 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_zone**
-> patch_zone(server_id, zone_id, zone_struct)
+> patch_zone(zone_struct, server_id, zone_id)
 
 Creates/modifies/deletes RRsets present in the payload and their comments. Returns 204 No Content on success.
 
@@ -422,13 +425,13 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonesApi(powerdns_client.ApiClient(configuration))
+zone_struct = powerdns_client.Zone() # Zone | The zone struct to patch with
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | 
-zone_struct = powerdns_client.Zone() # Zone | The zone struct to patch with
 
 try:
     # Creates/modifies/deletes RRsets present in the payload and their comments. Returns 204 No Content on success.
-    api_instance.patch_zone(server_id, zone_id, zone_struct)
+    api_instance.patch_zone(zone_struct, server_id, zone_id)
 except ApiException as e:
     print("Exception when calling ZonesApi->patch_zone: %s\n" % e)
 ```
@@ -437,9 +440,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **zone_struct** | [**Zone**](Zone.md)| The zone struct to patch with | 
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**|  | 
- **zone_struct** | [**Zone**](Zone.md)| The zone struct to patch with | 
 
 ### Return type
 
@@ -457,11 +460,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_zone**
-> put_zone(server_id, zone_id, zone_struct)
+> put_zone(zone_struct, server_id, zone_id)
 
-Modifies basic zone data (metadata).
+Modifies basic zone data.
 
-Allowed fields in client body: all except id, url and name. Returns 204 No Content on success.
+The only fields in the zone structure which can be modified are: kind, masters, catalog, account, soa_edit, soa_edit_api, api_rectify, dnssec, and nsec3param. All other fields are ignored.
 
 ### Example
 ```python
@@ -479,13 +482,13 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonesApi(powerdns_client.ApiClient(configuration))
+zone_struct = powerdns_client.Zone() # Zone | The zone struct to patch with
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | 
-zone_struct = powerdns_client.Zone() # Zone | The zone struct to patch with
 
 try:
-    # Modifies basic zone data (metadata).
-    api_instance.put_zone(server_id, zone_id, zone_struct)
+    # Modifies basic zone data.
+    api_instance.put_zone(zone_struct, server_id, zone_id)
 except ApiException as e:
     print("Exception when calling ZonesApi->put_zone: %s\n" % e)
 ```
@@ -494,9 +497,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **zone_struct** | [**Zone**](Zone.md)| The zone struct to patch with | 
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**|  | 
- **zone_struct** | [**Zone**](Zone.md)| The zone struct to patch with | 
 
 ### Return type
 
@@ -564,7 +567,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
