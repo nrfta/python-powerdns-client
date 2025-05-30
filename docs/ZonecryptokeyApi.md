@@ -1,6 +1,6 @@
 # powerdns_client.ZonecryptokeyApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,9 +10,8 @@ Method | HTTP request | Description
 [**list_cryptokeys**](ZonecryptokeyApi.md#list_cryptokeys) | **GET** /servers/{server_id}/zones/{zone_id}/cryptokeys | Get all CryptoKeys for a zone, except the privatekey
 [**modify_cryptokey**](ZonecryptokeyApi.md#modify_cryptokey) | **PUT** /servers/{server_id}/zones/{zone_id}/cryptokeys/{cryptokey_id} | This method (de)activates a key from zone_name specified by cryptokey_id
 
-
 # **create_cryptokey**
-> Cryptokey create_cryptokey(server_id, zone_id, cryptokey)
+> Cryptokey create_cryptokey(cryptokey, server_id, zone_id)
 
 Creates a Cryptokey
 
@@ -34,13 +33,13 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonecryptokeyApi(powerdns_client.ApiClient(configuration))
+cryptokey = powerdns_client.Cryptokey() # Cryptokey | Add a Cryptokey
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | 
-cryptokey = powerdns_client.Cryptokey() # Cryptokey | Add a Cryptokey
 
 try:
     # Creates a Cryptokey
-    api_response = api_instance.create_cryptokey(server_id, zone_id, cryptokey)
+    api_response = api_instance.create_cryptokey(cryptokey, server_id, zone_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ZonecryptokeyApi->create_cryptokey: %s\n" % e)
@@ -50,9 +49,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **cryptokey** | [**Cryptokey**](Cryptokey.md)| Add a Cryptokey | 
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**|  | 
- **cryptokey** | [**Cryptokey**](Cryptokey.md)| Add a Cryptokey | 
 
 ### Return type
 
@@ -119,7 +118,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -175,7 +174,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -229,13 +228,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_cryptokey**
-> modify_cryptokey(server_id, zone_id, cryptokey_id, cryptokey)
+> modify_cryptokey(cryptokey, server_id, zone_id, cryptokey_id)
 
 This method (de)activates a key from zone_name specified by cryptokey_id
 
@@ -255,14 +254,14 @@ configuration.api_key['X-API-Key'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = powerdns_client.ZonecryptokeyApi(powerdns_client.ApiClient(configuration))
+cryptokey = powerdns_client.Cryptokey() # Cryptokey | the Cryptokey
 server_id = 'server_id_example' # str | The id of the server to retrieve
 zone_id = 'zone_id_example' # str | 
 cryptokey_id = 'cryptokey_id_example' # str | Cryptokey to manipulate
-cryptokey = powerdns_client.Cryptokey() # Cryptokey | the Cryptokey
 
 try:
     # This method (de)activates a key from zone_name specified by cryptokey_id
-    api_instance.modify_cryptokey(server_id, zone_id, cryptokey_id, cryptokey)
+    api_instance.modify_cryptokey(cryptokey, server_id, zone_id, cryptokey_id)
 except ApiException as e:
     print("Exception when calling ZonecryptokeyApi->modify_cryptokey: %s\n" % e)
 ```
@@ -271,10 +270,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **cryptokey** | [**Cryptokey**](Cryptokey.md)| the Cryptokey | 
  **server_id** | **str**| The id of the server to retrieve | 
  **zone_id** | **str**|  | 
  **cryptokey_id** | **str**| Cryptokey to manipulate | 
- **cryptokey** | [**Cryptokey**](Cryptokey.md)| the Cryptokey | 
 
 ### Return type
 

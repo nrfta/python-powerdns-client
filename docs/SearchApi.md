@@ -1,11 +1,10 @@
 # powerdns_client.SearchApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**search_data**](SearchApi.md#search_data) | **GET** /servers/{server_id}/search-data | Search the data inside PowerDNS
-
 
 # **search_data**
 > SearchResults search_data(server_id, q, max, object_type=object_type)
@@ -62,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
